@@ -1,0 +1,19 @@
+.background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../public/christian-wiediger-gVbOF8mdE3U-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+.mainContent {
+  padding-top: 37%;
+  width: 60%;
+  text-align: center;
+  margin: 0 auto;
+}
+.title {
+  color: #f8f9fa;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+}

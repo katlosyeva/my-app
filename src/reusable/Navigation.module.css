@@ -1,0 +1,21 @@
+.fxBrand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fcc419;
+}
+.fxLink {
+  color: #868e96;
+  font-size: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid transparent;
+  transition: all 0.6s;
+}
+.fxLink:hover,
+.fxLink.active {
+  color: #fcc419;
+  border-bottom: 1px solid #fcc419;
+}
+
+.absoluteContainer {
+  background-color: #f8f9fa;
+}

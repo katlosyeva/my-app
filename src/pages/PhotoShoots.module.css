@@ -1,0 +1,36 @@
+.carouselPhoto {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40rem;
+}
+.carouselPhoto1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
+    url("../../public/assets/vusheneba.jpg");
+}
+.carouselPhoto2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
+    url("../../public/assets/newyear.jpg");
+}
+.carouselPhoto3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
+    url("../../public/assets/na-prurodi.jpg");
+}
+.photoshootsContainer {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 40fr 60fr;
+}
+.list {
+  list-style: none;
+}
+.photoshootsMainContainer {
+  padding: 2rem;
+  background-color: #495057;
+  color: #dee2e6;
+}
+@media (max-width: 76em) {
+  .photoshootsContainer {
+    display: block;
+  }
+}

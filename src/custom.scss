@@ -1,0 +1,22 @@
+// Override default variables before the import
+// Impact: alert, badge, buttons, list-group, root(css-var), tables, background, borders, text
+// Default base colors
+$color-primary: #ffe066;
+$color-secondary: #f8f9fa;
+$color-info: #868e96;
+$theme-default-colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  //   "success": $color-success,
+  "info": $color-info,
+  //   "warning": $color-warning,
+  //   "danger": $color-danger,
+  //   "accent": $color-accent,
+  //   "light": $color-neutral-light,
+  //   "dark": $color-neutral-darker,,,,,,
+) !default;
+// Fallback bootstrap reset
+$theme-colors: $theme-default-colors;
+
+// Import Bootstrap and its default variables
+@import "~bootstrap/scss/bootstrap.scss";

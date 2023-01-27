@@ -1,0 +1,36 @@
+.img {
+  width: 100%;
+}
+.background {
+  background-color: #f8f9fa;
+  padding: 10rem 0;
+}
+.content {
+  text-align: center;
+}
+.title {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.maintitle {
+  text-align: center;
+  color: #868e96;
+}
+
+.maindescription {
+  text-align: center;
+  color: #868e96;
+  margin-bottom: 5rem;
+}
+.link {
+  text-decoration: none;
+  color: #868e96;
+}

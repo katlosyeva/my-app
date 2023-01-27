@@ -1,0 +1,23 @@
+.secondHeader {
+  background-color: #ffe066;
+  color: #868e96;
+  padding: 0.7rem 1rem;
+}
+.option {
+  display: flex;
+  width: 15%;
+}
+.numberInput {
+  width: 40%;
+}
+.label {
+  width: 7rem;
+}
+span {
+  line-height: 2.5rem;
+  font-size: 0.9rem;
+}
+.confirmButton {
+  background-color: #868e96;
+  color: #f8f9fa;
+}
