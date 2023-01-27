@@ -9,6 +9,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { useState } from "react";
+import { Formik } from "formik";
 
 const RegistrationModal = (props) => {
   // const passwordIsValid =isLengthy && hasUpper && hasLower && hasNumber && hasSpecial;
@@ -66,6 +67,24 @@ const RegistrationModal = (props) => {
     setValidated(true);
   };
 
+  const schema = yup.object().shape({
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    username: yup.string().required(),
+    city: yup.string().required(),
+    state: yup.string().required(),
+    zip: yup.string().required(),
+    terms: yup.bool().required().oneOf([true], "Terms must be accepted"),
+  });
+
+  const validateUsername = (value) => {
+    let error;
+    if (value === "admin") {
+      error = "Nice try!";
+    }
+    return error;
+  };
+
   return (
     <>
       <Modal show={props.show} onHide={props.handleCloseRegistration}>
@@ -73,78 +92,94 @@ const RegistrationModal = (props) => {
           <Modal.Title>Реєстрація</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form validated={validated} noValidate onSubmit={handleSubmit}>
-            <Row className="my-3">
-              <Form.Group
-                as={Col}
-                md="6"
-                noValidate
-                controlId="validationCustom01"
-              >
-                <FloatingLabel label="Ім'я">
-                  <Form.Control
-                    type="text"
-                    placeholder="Катерина"
-                    ref={nameRef}
-                    required
-                  />
+          <Formik
+            validationSchema={schema}
+            onSubmit={console.log}
+            initialValues={{
+              handleSubmit,
+              handleChange,
+              handleBlur,
+              values,
+              touched,
+              isValid,
+              errors,
+            }}
+          >
+            {({ values, errors, touched, validateField, validateForm }) => (
+              <Form noValidate onSubmit={handleSubmit}>
+                <Row className="my-3">
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    noValidate
+                    controlId="validationCustom01"
+                  >
+                    <FloatingLabel label="Ім'я">
+                      <Form.Control
+                        type="text"
+                        name="firstName"
+                        value={values.firstName}
+                        onChange={handleChange}
+                      />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group as={Col} md="6" controlId="validationCustom02">
+                    <FloatingLabel label="Прізвище">
+                      <Form.Control
+                        type="text"
+                        placeholder="Лосєва"
+                        ref={lastnameRef}
+                        required
+                      />
+                    </FloatingLabel>
+                  </Form.Group>
+                </Row>
+                <FloatingLabel
+                  controlId="validationCustom03"
+                  label="Email"
+                  className="my-3"
+                  ref={emailRef}
+                  required
+                >
+                  <Form.Control type="email" placeholder="name@example.com" />
                 </FloatingLabel>
-              </Form.Group>
-              <Form.Group as={Col} md="6" controlId="validationCustom02">
-                <FloatingLabel label="Прізвище">
-                  <Form.Control
-                    type="text"
-                    placeholder="Лосєва"
-                    ref={lastnameRef}
-                    required
-                  />
-                </FloatingLabel>
-              </Form.Group>
-            </Row>
-            <FloatingLabel
-              controlId="validationCustom03"
-              label="Email"
-              className="my-3"
-              ref={emailRef}
-              required
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <Row className="mb-2">
-              <Form.Group as={Col} md="6" controlId="validationCustom04">
-                <FloatingLabel label="Пароль">
-                  <Form.Control
-                    type="password"
-                    placeholder="Пароль"
-                    ref={passwordRef}
-                    required
-                  />
-                </FloatingLabel>
-              </Form.Group>
-              <Form.Group as={Col} md="6" controlId="validationCustom05">
-                <FloatingLabel label="Повторіть пароль">
-                  <Form.Control
-                    type="password"
-                    placeholder="Повторіть пароль"
-                    ref={confirmPasswordRef}
-                    required
-                  />
-                </FloatingLabel>
-              </Form.Group>
-            </Row>
-            <Form.Check
-              className="small"
-              required
-              label="Я згоден з політикою конфіденційності та даю згоду на обробку своїх персональних даних."
-              feedback="You must agree before submitting."
-              feedbackType="invalid"
-            />
-            <Container className="d-flex justify-content-center mx-3 my-3">
-              <Button className="px-5" type="submit" variant="primary">
-                Зареєструватися
-              </Button>
-            </Container>
-          </Form>
+                <Row className="mb-2">
+                  <Form.Group as={Col} md="6" controlId="validationCustom04">
+                    <FloatingLabel label="Пароль">
+                      <Form.Control
+                        type="password"
+                        placeholder="Пароль"
+                        ref={passwordRef}
+                        required
+                      />
+                    </FloatingLabel>
+                  </Form.Group>
+                  <Form.Group as={Col} md="6" controlId="validationCustom05">
+                    <FloatingLabel label="Повторіть пароль">
+                      <Form.Control
+                        type="password"
+                        placeholder="Повторіть пароль"
+                        ref={confirmPasswordRef}
+                        required
+                      />
+                    </FloatingLabel>
+                  </Form.Group>
+                </Row>
+                <Form.Check
+                  className="small"
+                  required
+                  label="Я згоден з політикою конфіденційності та даю згоду на обробку своїх персональних даних."
+                  feedback="You must agree before submitting."
+                  feedbackType="invalid"
+                />
+                <Container className="d-flex justify-content-center mx-3 my-3">
+                  <Button className="px-5" type="submit" variant="primary">
+                    Зареєструватися
+                  </Button>
+                </Container>
+              </Form>
+            )}
+          </Formik>
         </Modal.Body>
       </Modal>
     </>
