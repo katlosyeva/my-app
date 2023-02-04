@@ -4,19 +4,23 @@
 $color-primary: #ffe066;
 $color-secondary: #f8f9fa;
 $color-info: #868e96;
+$color-danger: red;
+$color-accent: #fff3bf;
 $theme-default-colors: (
   "primary": $color-primary,
   "secondary": $color-secondary,
   //   "success": $color-success,
   "info": $color-info,
   //   "warning": $color-warning,
-  //   "danger": $color-danger,
-  //   "accent": $color-accent,
+  "danger": $color-danger,
+  "accent": $color-accent,
   //   "light": $color-neutral-light,
-  //   "dark": $color-neutral-darker,,,,,,
+  //   "dark": $color-neutral-darker,,,,,,,,,,,
 ) !default;
 // Fallback bootstrap reset
 $theme-colors: $theme-default-colors;
+$form-check-input-checked-bg-color: $color-info;
+$form-check-input-checked-border-color: $color-info;
 
 // Import Bootstrap and its default variables
 @import "~bootstrap/scss/bootstrap.scss";

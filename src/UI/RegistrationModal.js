@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import classes from "./RegistrationModal.module.css";
+import { useAuth } from "../contexts/AuthContext";
+
 import {
   Form,
   Button,
@@ -7,63 +9,86 @@ import {
   FloatingLabel,
   Row,
   Col,
+  Alert,
 } from "react-bootstrap";
 import { useState } from "react";
 
 const RegistrationModal = (props) => {
-  // const passwordIsValid =isLengthy && hasUpper && hasLower && hasNumber && hasSpecial;
-  // const confirmPasswordIsValid = password && confirmPassword;
-  // const nameIsVaild = IsMoreThanTwo(email);
-  // const lastnameIsVaild = IsMoreThanTwo(email);
-  // const emailIsVaild = IsMoreThanTwo(email);
-  const nameRef = useRef();
-  const lastnameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const { signup, currentUser } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const [validated, setValidated] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
-  const [nameIsValid, setNameIsValid] = useState(false);
-  const [lastnameIsValid, setLastnameIsValid] = useState(false);
-  const [emailIsValid, setEmailIsValid] = useState(false);
-  const [confirmPasswordIsValid, setConfirmPasswordIsValid] = useState(false);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const name = nameRef.current.value;
-    const lastname = lastnameRef.current.value;
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    const confirmPassword = confirmPasswordRef.current.value;
-    const isLengthy = password.length > 8;
-    const hasUpper = /[A_Z]/.test(password);
-    const hasLower = /[a_z]/.test(password);
-    const hasNumber = /[0_9]/.test(password);
-    const hasSpecial = /[@,#,$,%,&,*,~]/.test(password);
+  const [values, setValues] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [formerrors, setFormErrors] = useState({});
 
-    const isMoreThanTwo = (value) => value.trim().length > 2;
+  const handleChange = (event) => {
+    setValues((values) => ({
+      ...values,
+      [event.target.name]: event.target.value,
+    }));
+  };
 
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
+  const validate = () => {
+    let errors = {};
 
-    //   event.stopPropagation();
+    //name field
+    if (!values.name) {
+      errors.name = "Напишіть своє ім'я";
+    }
 
-    setPasswordIsValid(
-      isLengthy && hasUpper && hasLower && hasNumber && hasSpecial
-    );
-    setNameIsValid(isMoreThanTwo(name));
-    setLastnameIsValid(isMoreThanTwo(lastname));
-    setEmailIsValid(/\S+@\S+\.\S+/.test(email));
-    setConfirmPasswordIsValid(password === confirmPassword);
-    setValidated(
-      passwordIsValid &&
-        nameIsValid &&
-        lastnameIsValid &&
-        emailIsValid &&
-        confirmPasswordIsValid
-    );
-    console.log(nameIsValid, emailIsValid, passwordIsValid, validated);
-    setValidated(true);
+    //name field
+    if (!values.lastname) {
+      errors.lastname = "Напишіть своє прізвище";
+    }
+
+    //email field
+    if (!values.email) {
+      errors.email = "Напишіть свій імейл";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      errors.email = "Введіть вірний імейл";
+    }
+    //email field
+    if (!values.password) {
+      errors.password = "Напишіть свій пароль";
+    } else if (
+      /[A_Z]/.test(values.password) &&
+      /[0_9]/.test(values.password) &&
+      /[@,#,$,%,&,*,~]/.test(values.password)
+    ) {
+      errors.password = "Придумайте безпечний пароль";
+    }
+    //email field
+    if (!values.password) {
+      errors.confirmPassword = "Напишіть свій пароль ще раз";
+    } else if (values.password !== values.confirmPassword) {
+      errors.confirmPassword = "Паролі не співпадають";
+    }
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const handleSubmit = async (event) => {
+    if (event) event.preventDefault();
+    setError("");
+    setLoading(true);
+    if (validate(values)) {
+      try {
+        await signup(values.email, values.password);
+      } catch {
+        setError("Невдалося зареєструвати користувача");
+      }
+    }
+    setLoading(false);
   };
 
   return (
@@ -73,21 +98,33 @@ const RegistrationModal = (props) => {
           <Modal.Title>Реєстрація</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form validated={validated} noValidate onSubmit={handleSubmit}>
+          {/* {currentUser && !error && (
+            <p className="text-danger">
+              Ви успішно зареєстровані {currentUser && currentUser.email}
+            </p>
+          )} */}
+          {currentUser && (
+            <Alert>
+              Ви успішно зареєстровані {currentUser && currentUser.email}
+            </Alert>
+          )}
+
+          {error && <Alert>{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
             <Row className="my-3">
-              <Form.Group
-                as={Col}
-                md="6"
-                noValidate
-                controlId="validationCustom01"
-              >
+              <Form.Group as={Col} md="6">
                 <FloatingLabel label="Ім'я">
                   <Form.Control
                     type="text"
+                    name="name"
                     placeholder="Катерина"
-                    ref={nameRef}
-                    required
+                    onChange={handleChange}
+                    className={formerrors.name ? classes.redBorder : ""}
                   />
+
+                  {formerrors.name && (
+                    <p className="text-danger">{formerrors.name}</p>
+                  )}
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col} md="6" controlId="validationCustom02">
@@ -95,30 +132,40 @@ const RegistrationModal = (props) => {
                   <Form.Control
                     type="text"
                     placeholder="Лосєва"
-                    ref={lastnameRef}
-                    required
+                    name="lastname"
+                    onChange={handleChange}
+                    className={formerrors.lastname ? classes.redBorder : ""}
                   />
                 </FloatingLabel>
+                {formerrors.lastname && (
+                  <p className="text-danger">{formerrors.lastname}</p>
+                )}
               </Form.Group>
             </Row>
-            <FloatingLabel
-              controlId="validationCustom03"
-              label="Email"
-              className="my-3"
-              ref={emailRef}
-              required
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
+            <FloatingLabel label="Email">
+              <Form.Control
+                onChange={handleChange}
+                className={formerrors.email ? `${classes.redBorder} mb-1` : ""}
+                name="email"
+                placeholder="Email"
+              />
             </FloatingLabel>
-            <Row className="mb-2">
+            {formerrors.email && (
+              <p className="text-danger">{formerrors.email}</p>
+            )}
+            <Row className="mt-3 mb-2">
               <Form.Group as={Col} md="6" controlId="validationCustom04">
                 <FloatingLabel label="Пароль">
                   <Form.Control
                     type="password"
                     placeholder="Пароль"
-                    ref={passwordRef}
-                    required
+                    onChange={handleChange}
+                    name="password"
+                    className={formerrors.password ? classes.redBorder : ""}
                   />
+                  {formerrors.password && (
+                    <p className="text-danger">{formerrors.password}</p>
+                  )}
                 </FloatingLabel>
               </Form.Group>
               <Form.Group as={Col} md="6" controlId="validationCustom05">
@@ -126,10 +173,16 @@ const RegistrationModal = (props) => {
                   <Form.Control
                     type="password"
                     placeholder="Повторіть пароль"
-                    ref={confirmPasswordRef}
-                    required
+                    onChange={handleChange}
+                    name="confirmPassword"
+                    className={
+                      formerrors.confirmPassword ? classes.redBorder : ""
+                    }
                   />
                 </FloatingLabel>
+                {formerrors.confirmPassword && (
+                  <p className="text-danger">{formerrors.confirmPassword}</p>
+                )}
               </Form.Group>
             </Row>
             <Form.Check
@@ -140,7 +193,12 @@ const RegistrationModal = (props) => {
               feedbackType="invalid"
             />
             <Container className="d-flex justify-content-center mx-3 my-3">
-              <Button className="px-5" type="submit" variant="primary">
+              <Button
+                disabled={loading}
+                className={classes.button}
+                type="submit"
+                variant="primary"
+              >
                 Зареєструватися
               </Button>
             </Container>

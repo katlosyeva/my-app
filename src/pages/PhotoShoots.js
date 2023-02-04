@@ -1,8 +1,10 @@
 import React from "react";
 import classes from "./PhotoShoots.module.css";
 import PhotoGallery from "../reusable/PhotoGallery";
+import { useTranslation } from "react-i18next";
 
 const PhotoShoots = (props) => {
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <div>
@@ -38,25 +40,24 @@ const PhotoShoots = (props) => {
               className={`${classes.carouselPhoto} ${classes.carouselPhoto1} carousel-item active`}
             >
               <div class="carousel-caption d-none d-md-block">
-                <h5>Вище неба</h5>
-                <p>Найромантичніша локація для вашої коханої людини.</p>
+                <h5>{t("loc1_name")}</h5>
+                <p>{t("loc1_descript")}</p>
               </div>
             </div>
             <div
               className={`${classes.carouselPhoto} ${classes.carouselPhoto2} carousel-item`}
             >
               <div class="carousel-caption d-none d-md-block">
-                <h5>Новорічна казка</h5>
-                <p>Замовте фотосесію і отримайте спогади на цілий рік.</p>
+                <h5>{t("loc2_name")}</h5>
+                <p>{t("loc2_descript")}</p>
               </div>
             </div>
             <div
               className={`${classes.carouselPhoto} ${classes.carouselPhoto3} carousel-item `}
             >
-              {/* <img src="..." class="d-block w-100" alt="..." /> */}
               <div class="carousel-caption d-none d-md-block">
-                <h5>Чарівний сад</h5>
-                <p>В літню пору працює наша зелена локація. </p>
+                <h5>{t("loc3_name")}</h5>
+                <p>{t("loc3_descript")}</p>
               </div>
             </div>
           </div>
@@ -82,71 +83,38 @@ const PhotoShoots = (props) => {
       </div>
       <div className={classes.photoshootsMainContainer}>
         <div class="py-5">
-          <h2>Фотографія в студії і на виїзді</h2>
-          <p>
-            Фотохата пропонує широкий вибір кімнат-студій для фотосесії: "Вище
-            неба","Новорічна казка","Чарівний сад".
-          </p>
-          <p>Також, ми проводимо низку фотосесій на виїзді</p>
+          <h2>{t("shoots_types")}</h2>
+          <p>{t("shoots_locations")}</p>
+          <p>{t("shoots_outside")}</p>
           <ul className={classes.list}>
-            <li>Весілля</li>
-            <li>Хрестини</li>
-            <li>Випускний</li>
-            <li>Корпоративи</li>
+            <li>{t("outside_type1")}</li>
+            <li>{t("outside_type2")}</li>
+            <li>{t("outside_type3")}</li>
+            <li>{t("outside_type4")}</li>
           </ul>
-          <p>
-            Для бронювання зв'яжіться з нашими менеджерами за телефоном або
-            через електронну пошту. Якщо Ваша подія відбувається в особливо
-            "спекотні" дні-кінець навчального року, літні місяці- радимо
-            зарезервувати час якомога раніше.
-          </p>
+          <p>{t("booking")}</p>
         </div>
 
         <div className={classes.photoshootsContainer}>
           <div className={classes.photoshootsInfo}>
-            <h4>Наша студія також пропонує ряд тематичних фотосесій.</h4>
+            <h4> {t("theme_shoots")}</h4>
             <div className={classes.photoshootType}>
-              <h5>Весільна фотографія</h5>
-              <p>
-                Один з найпрекрасніших моментів всього життя – це весілля! Біла,
-                розкішна сукня, фата, костюм, букет, золоті обручки на
-                безіменних пальцях і щасливі, від щастя посмішок! Один короткий
-                день, сповнений таких дефілядних емоцій та переживань потім
-                будуть згадувати обоє молодят, сидячи перед телевізором за років
-                так 60.
-              </p>
+              <h5> {t("wedding")}</h5>
+              <p>{t("wedding_descript")}</p>
             </div>
             <div className={classes.photoshootType}>
-              <h5>Родинна фотосесія</h5>
-              <p>
-                Зберегти дорогі серцю образи ваших рідних - обов'язок і бажання,
-                які ми обов'язково передамо своїм нащадкам. Холодними осінніми
-                вечорами вдивлятися в очі рідних, які зараз далеко, ви зможете
-                завдяки спільним фотографіям. Перенестися в радісний день, коли
-                вся родина збирається разом, ви зможете замовивши послугу
-                "сімейна фотографія" у нашій студії.
-              </p>
+              <h5> {t("family")}</h5>
+              <p>{t("family_descript")}</p>
             </div>
 
             <div className={classes.photoshootType}>
-              <h5>9 місяців</h5>
-              <p>
-                Шоб ваша дитина була певною, шо її не приніс лелека чи її,
-                бідолашну не здибали батьки в капусті на сирій, холодній землі –
-                ви просто мусите прийти до нас, аби ми наробили вам купу знимок
-                з вашим животиком! А ше краще кожного місяця в один і той самий
-                день приходити і знимкувати животик!
-              </p>
+              <h5> {t("pregnant")}</h5>
+              <p>{t("pregnant_descript")}</p>
             </div>
 
             <div className={classes.photoshootType}>
-              <h5>Фото в стилі "НЮ"</h5>
-              <p>
-                Якщо ви завжди мріяли про оригінальну і нестандартну фотосесію в
-                стилі "ню", - наша фотостудія запрошує вас. Чуттєві, теплі фото
-                з натяком на тонку еротику - найкращий подарунок для закоханих
-                один одному.
-              </p>
+              <h5> {t("nyu")}</h5>
+              <p>{t("nyu_descript")}</p>
             </div>
           </div>
           <PhotoGallery />

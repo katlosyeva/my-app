@@ -1,0 +1,29 @@
+.mainContainer {
+  display: flex;
+  margin-bottom: 1.8rem;
+}
+.mapContainer {
+  width: 30%;
+}
+.infoContainer {
+  width: 70%;
+  padding-left: 1.5rem;
+}
+
+.infoLabel {
+  min-width: 9rem;
+  color: red;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+@media (max-width: 62em) {
+  .mainContainer {
+    display: block;
+  }
+  .mapContainer {
+    width: 100%;
+  }
+  .infoContainer {
+    width: 100%;
+  }
+}

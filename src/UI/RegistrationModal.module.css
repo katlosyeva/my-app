@@ -1,0 +1,15 @@
+.redBorder {
+  border: 2px solid rgba(250, 0, 0, 0.449);
+}
+.bottomMargin {
+  margin-bottom: 1rem;
+}
+.button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  min-width: 10rem;
+}
+.button:hover {
+  background-color: #868e96;
+  color: #f8f9fa;
+}

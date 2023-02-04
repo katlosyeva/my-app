@@ -1,16 +1,40 @@
 import classes from "./Navigation.module.css";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLinkClickHandler } from "react-router-dom";
 import { useState } from "react";
 import AuthModal from "../UI/AuthModal";
 import RegistrationModal from "../UI/RegistrationModal";
 import ForgotPasswordModal from "../UI/ForgotPasswordModal";
+import AuthProvider from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
+import ConfirmationModal from "../UI/ConfirmationModal";
+import LanguageSwitch from "../UI/LanguageSwitch";
+import { useTranslation } from "react-i18next";
 
 const Navigation = (props) => {
+  const { t, i18n } = useTranslation();
+
   const [show, setShow] = useState(false);
   const [showRegistration, setShowRegistration] = useState(false);
   const [showForgotModal, setForgotModalShowRegistration] = useState(false);
+  const [confirmModalShow, setConfirmModalShow] = useState(false);
+  const { signout, currentUser } = useAuth();
+  const { errorLogout, setErrorLogout } = useState(false);
 
+  const openConfirmModal = () => {
+    setConfirmModalShow(true);
+  };
+  const closeConfirmModal = () => {
+    setConfirmModalShow(false);
+  };
+  const logoutSubmit = async (event) => {
+    try {
+      await signout();
+      closeConfirmModal();
+    } catch {
+      setErrorLogout("Сталася помилка. Попробуйте ще раз.");
+    }
+  };
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -30,7 +54,7 @@ const Navigation = (props) => {
   };
 
   return (
-    <>
+    <AuthProvider>
       <div className={classes.absoluteContainer}>
         <div class="container">
           <nav class="navbar navbar-expand-lg align-center">
@@ -63,7 +87,7 @@ const Navigation = (props) => {
                       }
                       to="/photo-shoots"
                     >
-                      Фотосесії
+                      {t("nav_photoshoots")}
                     </NavLink>
                   </li>
                   <li class="nav-item">
@@ -75,10 +99,10 @@ const Navigation = (props) => {
                       }
                       to="/services-list"
                     >
-                      Фотопослуги
+                      {t("nav_photoservices")}
                     </NavLink>
                   </li>
-                  <li class="nav-item">
+                  {/* <li class="nav-item">
                     <NavLink
                       className={({ isActive }) =>
                         isActive
@@ -101,7 +125,7 @@ const Navigation = (props) => {
                     >
                       Товари
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li class="nav-item">
                     <NavLink
                       className={({ isActive }) =>
@@ -111,31 +135,47 @@ const Navigation = (props) => {
                       }
                       to="/photo-print"
                     >
-                      Друк через інтернет
+                      {t("nav_print")}
                     </NavLink>
                   </li>
-                  <li class="nav-item">
-                    <button
-                      type="button"
+                  {!currentUser && (
+                    <li
+                      class={`${classes.fxLink} nav-main nav-link`}
                       onClick={handleShow}
-                      className={`${classes.fxLink} nav-main nav-link`}
                     >
-                      Увійти
-                    </button>
-                  </li>
-                  <li class="nav-item">
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive
-                          ? `${classes.fxLink} ${classes.active} nav-main nav-link`
-                          : `${classes.fxLink} nav-main nav-link`
-                      }
-                      to="/language"
+                      {t("nav_login")}
+                    </li>
+                  )}
+                  {currentUser && (
+                    <li class="nav-item ">
+                      <div class="h-100 d-flex align-items-center px-1">
+                        <i class="bi bi-person-circle fs-3"></i>
+                      </div>
+                      {/* <p>{currentUser.email}</p> */}
+                    </li>
+                  )}
+                  {currentUser && (
+                    <li
+                      class={`${classes.fxLink} nav-main nav-link`}
+                      onClick={openConfirmModal}
                     >
-                      Мова
-                    </NavLink>
-                  </li>
+                      {t("nav_logout")}
+                    </li>
+                  )}
+                  <LanguageSwitch />
                 </ul>
+                {/* <div
+                  class="btn-group ms-4"
+                  role="group"
+                  aria-label="First group"
+                >
+                  <button type="button" class="btn btn-secondary">
+                    укр
+                  </button>
+                  <button type="button" class="btn btn-secondary">
+                    eng
+                  </button>
+                </div> */}
               </div>
             </div>
           </nav>
@@ -157,7 +197,14 @@ const Navigation = (props) => {
         closeForgotModal={closeForgotModal}
         show={showForgotModal}
       />
-    </>
+      <ConfirmationModal
+        close={closeConfirmModal}
+        logout={logoutSubmit}
+        errorState={errorLogout}
+        show={confirmModalShow}
+        text={"Вийти"}
+      />
+    </AuthProvider>
   );
 };
 

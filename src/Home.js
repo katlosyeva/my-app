@@ -1,15 +1,14 @@
 import classes from "./Home.module.css";
 import Button from "./UI/Button";
+import { useTranslation } from "react-i18next";
 
 const Home = (props) => {
+  const { t, i18n } = useTranslation();
   return (
     <div className={classes.background}>
       <div className={classes.mainContent}>
-        <h1 className={classes.title}>
-          Будь щасливий саме зараз в поточний момент. Тому що твоє життя завжди
-          складається з поточних моментів...
-        </h1>
-        <Button onClick={props.onClick}>Вибрати фотосесію</Button>
+        <h1 className={classes.title}>{t("motto")}</h1>
+        <Button onClick={props.onClick}> {t("motto_btn")}</Button>
       </div>
     </div>
   );

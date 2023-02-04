@@ -3,7 +3,7 @@
 }
 .background {
   background-color: #f8f9fa;
-  padding: 10rem 0;
+  padding: 10rem 5rem;
 }
 .content {
   text-align: center;
@@ -13,7 +13,6 @@
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
-
 .card {
   display: flex;
   flex-direction: column;
@@ -24,7 +23,6 @@
   text-align: center;
   color: #868e96;
 }
-
 .maindescription {
   text-align: center;
   color: #868e96;

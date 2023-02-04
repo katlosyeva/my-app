@@ -5,16 +5,13 @@
   height: 40rem;
 }
 .carouselPhoto1 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)),
-    url("../../public/assets/vusheneba.jpg");
+  background-image: url("../../public/assets/vusheneba.jpg");
 }
 .carouselPhoto2 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
-    url("../../public/assets/newyear.jpg");
+  background-image: url("../../public/assets/newyear.jpg");
 }
 .carouselPhoto3 {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)),
-    url("../../public/assets/na-prurodi.jpg");
+  background-image: url("../../public/assets/na-prurodi.jpg");
 }
 .photoshootsContainer {
   display: grid;

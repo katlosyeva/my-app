@@ -1,5 +1,6 @@
 // import { Route, Routes } from "react-router-dom";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 
 import Home from "./Home";
@@ -10,6 +11,9 @@ import ServicesList from "./pages/ServicesList";
 import ProductPage from "./pages/ProductPage";
 import Order from "./pages/Order";
 import PhotoShoots from "./pages/PhotoShoots";
+import Contacts from "./pages/Contacts";
+import AboutUs from "./pages/AboutUs";
+import { loader as shopsLoader } from "./pages/Contacts";
 
 const servicesList = [
   {
@@ -258,6 +262,15 @@ const router = createBrowserRouter([
       {
         path: "/photo-shoots",
         element: <PhotoShoots />,
+      },
+      {
+        path: "/contacts",
+        element: <Contacts />,
+        loader: shopsLoader,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs />,
       },
     ],
   },
