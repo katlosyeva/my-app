@@ -1,15 +1,17 @@
 import classes from "./Order.module.css";
 
-import PhotoForm from "../reusable/PhotoForm";
-import { useState, useEffect } from "react";
+import PhotoForm from "../UI/order-photo/PhotoForm";
+import { useState, useEffect, useCallback } from "react";
 import { useRef } from "react";
-import LoadingSpinner from "../UI/Spinner";
-import OrderGeneralInfoHeader from "../reusable/OrderGeneralInfoHeader";
-// import { click } from "@testing-library/user-event/dist/click";
+import LoadingSpinner from "../UI/shared/Spinner";
+import OrderGeneralInfoHeader from "../UI/order-photo/OrderGeneralInfoHeader";
+import TablePrices from "../UI/shared/TablePrices";
+
 const itemPrice = {
   "9X13": 5,
   "10X15": 8,
 };
+
 const Order = (props) => {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState(0);
@@ -40,6 +42,7 @@ const Order = (props) => {
               paper: "Матовий",
               ramka: "Без рамки",
               number: 1,
+
               // kadruvannya: "В обріз",
             },
           ]
@@ -51,6 +54,7 @@ const Order = (props) => {
               paper: "Матовий",
               ramka: "Без рамки",
               number: 1,
+
               // kadruvannya: "В обріз",
             },
           ]
@@ -101,39 +105,30 @@ const Order = (props) => {
     setPrice(0);
   };
 
-  const calculatePrice = () => {
+  const calculatePrice = useCallback(() => {
     setPrice(() => {
       const sum = image.reduce((accum, currentValue) => {
-        console.log("hello", accum, currentValue);
-
         return accum + itemPrice[currentValue.format] * currentValue.number;
       }, 0);
 
       return sum;
     });
-  };
+  }, [image]);
+
   useEffect(() => {
     if (image && image.length) {
       calculatePrice();
     }
-  }, [image]);
+  }, [image, calculatePrice]);
+  console.log(5);
+  let table = [];
 
-  const renderTable = () => {
-    let template = [];
+  const priceArray = () => {
     for (let key in itemPrice) {
-      template.push(
-        <div key={key} class="row gx-5 border-info justify-content-center">
-          <div class="col-6">
-            <div className={classes.border}>{key}</div>
-          </div>
-          <div class="col-3">
-            <div className={classes.border}>{itemPrice[key]}</div>
-          </div>
-        </div>
-      );
+      table.push({ format: key, price: itemPrice[key] });
     }
-    return template;
   };
+  priceArray();
 
   return (
     <div>
@@ -143,40 +138,39 @@ const Order = (props) => {
         orderPrice={price}
         buttonState={image}
       />
-      {image ? (
+      {image && (
         <PhotoForm onChoosingProperties={setImageProperties}></PhotoForm>
-      ) : (
-        ""
       )}
       <div className={classes.photoContainer}>
-        <div class="p-2">
+        <div className="p-2">
           {image ? (
             loading ? (
               <LoadingSpinner />
             ) : (
               image.map((imageObject) => (
-                <div className={classes.imageContainer}>
+                <div key={imageObject.id} className={classes.imageContainer}>
                   <div>
                     <input
-                      class="align-baseline form-check-input"
+                      className="align-baseline form-check-input"
                       type="checkbox"
                       value={imageObject.value}
                       id={imageObject.id}
                       onChange={changeCheckboxStateHandler}
                     />
-                    <span class="pe-1">{imageObject.format}</span>
-                    <span class="pe-1">{imageObject.paper}</span>
+                    <span className="pe-1">{imageObject.format}</span>
+                    <span className="pe-1">{imageObject.paper}</span>
                   </div>
 
                   <img
                     src={imageObject.id}
                     key={imageObject.id}
                     style={{ width: "150px", height: "100px" }}
+                    alt="your_photo"
                   />
 
                   <div>
-                    <span class="pe-1">{imageObject.ramka}</span>
-                    <span class="pe-1">{imageObject.number}шт.</span>
+                    <span className="pe-1">{imageObject.ramka}</span>
+                    <span className="pe-1">{imageObject.number}шт.</span>
                     {/* <span class="pe-1">{imageObject.kadruvannya}</span> */}
                   </div>
                 </div>
@@ -188,8 +182,9 @@ const Order = (props) => {
 
           <img
             className={classes.downloadImage}
-            src="/assets/add image.png"
+            src="/assets/icons/order-photo/add image.png"
             onClick={onBtnClick}
+            alt="click_to_download_photo"
           />
 
           <input
@@ -202,20 +197,12 @@ const Order = (props) => {
           />
         </div>
       </div>
-      <div class="container">
-        <div class="border-top border-info border-bottom">
-          <div class="row gx-5  justify-content-center">
-            <div class="col-6">
-              <div className={classes.heading}>Формат</div>
-            </div>
-
-            <div class="col-3">
-              <div className={classes.heading}>Ціна за шт.</div>
-            </div>
-          </div>
-
-          <div>{renderTable()}</div>
-        </div>
+      <div className="container">
+        <TablePrices
+          table={table}
+          firstcolName="Формат"
+          secondcolName="Ціна/шт."
+        />
       </div>
     </div>
   );

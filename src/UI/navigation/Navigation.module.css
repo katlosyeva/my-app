@@ -1,8 +1,13 @@
-.fxBrand {
+.fxBrand,
+.fxBrand:focus,
+.fxBrand:hover,
+.fxBrand:visited {
   font-size: 1.5rem;
   font-weight: bold;
   color: #fcc419;
+  text-decoration: none;
 }
+
 .fxLink {
   color: #868e96;
   font-size: 1.2rem;

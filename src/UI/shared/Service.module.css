@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.img {
+  width: 100%;
+}
+
+.content {
+  text-align: center;
+}
+.title {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #868e96;
+}

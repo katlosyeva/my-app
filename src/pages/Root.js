@@ -1,8 +1,9 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Navigation from "../reusable/Navigation";
-import Footer from "../reusable/Footer";
+
+import Footer from "../UI/footer/Footer";
 import AuthProvider from "../contexts/AuthContext";
+import Navigation from "../UI/navigation/Navigation";
 
 function RootLayout() {
   let location = useLocation();

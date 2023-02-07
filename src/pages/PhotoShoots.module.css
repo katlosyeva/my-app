@@ -1,18 +1,4 @@
-.carouselPhoto {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 40rem;
-}
-.carouselPhoto1 {
-  background-image: url("../../public/assets/vusheneba.jpg");
-}
-.carouselPhoto2 {
-  background-image: url("../../public/assets/newyear.jpg");
-}
-.carouselPhoto3 {
-  background-image: url("../../public/assets/na-prurodi.jpg");
-}
+
 .photoshootsContainer {
   display: grid;
   gap: 2rem;

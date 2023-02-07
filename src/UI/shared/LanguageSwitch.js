@@ -1,5 +1,5 @@
 import React from "react";
-import i18n from "../i18n";
+import i18n from "../../i18n";
 
 const LanguageSwitch = () => {
   return (
@@ -12,7 +12,11 @@ const LanguageSwitch = () => {
         role="button"
       >
         <div>
-          <img className="pe-1" src="/assets/ukraine.png" />
+          <img
+            className="pe-1"
+            src="/assets/icons/localization/ukraine.png"
+            alt="ukr_flag"
+          />
           <span className="border-end border-info pe-2 border-2">УКР</span>
         </div>
       </li>
@@ -26,7 +30,11 @@ const LanguageSwitch = () => {
         role="button"
       >
         <div>
-          <img className="ps-2 pe-1" src="/assets/united-kingdom.png" />
+          <img
+            className="ps-2 pe-1"
+            src="/assets/icons/localization/united-kingdom.png"
+            alt="ukr_flag"
+          />
           <span>ENG</span>
         </div>
       </li>

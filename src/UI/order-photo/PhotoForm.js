@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./PhotoForm.module.css";
-import Button from "../UI/Button";
+import Button from "../shared/Button";
 import { useReducer } from "react";
 
 const photoReducer = (state, action) => {
@@ -80,22 +80,22 @@ const PhotoForm = (props) => {
   };
   return (
     <div className={classes.secondHeader}>
-      <form class="row gy-2" onSubmit={submitEventHandler}>
-        <div class=" col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
+      <form className="row gy-2" onSubmit={submitEventHandler}>
+        <div className=" col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
           <label className={classes.label}>Формат</label>
-          <select class="form-control me-2" onChange={formatEventHandler}>
+          <select className="form-control me-2" onChange={formatEventHandler}>
             <option>9X13</option>
             <option>10X15</option>
           </select>
         </div>
-        <div class=" col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
+        <div className=" col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
           <label className={classes.label}>Папір</label>
-          <select class="form-control me-2" onChange={paperEventHandler}>
+          <select className="form-control me-2" onChange={paperEventHandler}>
             <option>Матовий</option>
             <option>Глянцевий</option>
           </select>
         </div>
-        <div class="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
+        <div className="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
           <label
             className={classes.label}
             data-bs-toggle="tooltip"
@@ -105,23 +105,23 @@ const PhotoForm = (props) => {
             Рамка
           </label>
           <i
-            class="bi bi-question-circle text-muted  pe-1"
+            className="bi bi-question-circle text-muted  pe-1"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Біла рамка 5 мм по периметру"
           ></i>
-          <select class="form-control me-2" onChange={ramkaEventHandler}>
+          <select className="form-control me-2" onChange={ramkaEventHandler}>
             <option>Без рамки</option>
             <option>З рамкою</option>
           </select>
         </div>
-        <div class="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
+        <div className="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
           <label className={classes.label}>Кількість</label>
           <input
             type="number"
             min="1"
             step="1"
-            class="form-control me-2"
+            className="form-control me-2"
             onChange={numberEventHandler}
           />
         </div>
@@ -146,11 +146,10 @@ const PhotoForm = (props) => {
             <option>Весь кадр</option>
           </select>
         </div> */}
-        <div class="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
-          <Button className={classes.confirmButton}>Застосувати</Button>
-        </div>
-        <div class="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
-          <Button className={classes.confirmButton}>Зробити замовлення </Button>
+        <div className="col-6 col-lg-2 d-flex pe-lg-2 align-items-center">
+          <Button type="button" className={classes.confirmButton}>
+            Застосувати
+          </Button>
         </div>
       </form>
     </div>

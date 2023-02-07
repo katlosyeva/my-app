@@ -1,6 +1,6 @@
 import { Form, Button, Modal, Container, FloatingLabel } from "react-bootstrap";
 import classes from "./RegistrationModal.module.css";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 
 const ForgotPasswordModal = (props) => {

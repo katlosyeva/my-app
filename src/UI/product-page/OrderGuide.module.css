@@ -1,0 +1,41 @@
+.img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .title {
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    font-size: 1.1rem;
+  }
+  
+ 
+ 
+  
+  .steptitle {
+    font-weight: 800;
+    font-size: 3rem;
+    color: #fcc419;
+  }
+  .orderTitle {
+    font-weight: 900;
+    font-size: 3rem;
+    margin: 7rem 0;
+    text-align: center;
+  }
+  .column {
+    text-align: center;
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+  }
+ 
+  .colorIconContainer {
+    padding: 2rem;
+  }
+  .list {
+    list-style: none;
+  }

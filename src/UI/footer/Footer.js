@@ -4,17 +4,17 @@ import { useTranslation } from "react-i18next";
 const Footer = (props) => {
   const { t, i18n } = useTranslation();
   return (
-    <footer class="bg-secondary">
-      <ul class="nav justify-content-center ">
+    <footer className="bg-secondary">
+      <ul className="nav justify-content-center ">
         <li>
-          <Link class={`${classes.fxLink} nav-main nav-link`} to="/aboutus">
+          <Link className={`${classes.fxLink} nav-main nav-link`} to="/aboutus">
             {t("footer_aboutus")}
           </Link>
         </li>
 
         <li>
           <Link
-            class={`${classes.fxLink} nav-main nav-link`}
+            className={`${classes.fxLink} nav-main nav-link`}
             to="/photo-shoots"
           >
             {t("footer_photoshoots")}
@@ -22,15 +22,18 @@ const Footer = (props) => {
         </li>
         <li>
           <Link
-            class={`${classes.fxLink} nav-main nav-link`}
+            className={`${classes.fxLink} nav-main nav-link`}
             to="/services-list"
           >
             {t("footer_services")}
           </Link>
         </li>
         <li>
-          <Link class={`${classes.fxLink} nav-main nav-link`} to="/contacts">
-          {t("footer_contacts")}
+          <Link
+            className={`${classes.fxLink} nav-main nav-link`}
+            to="/contacts"
+          >
+            {t("footer_contacts")}
           </Link>
         </li>
       </ul>

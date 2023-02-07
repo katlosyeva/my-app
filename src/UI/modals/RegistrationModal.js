@@ -1,5 +1,5 @@
 import classes from "./RegistrationModal.module.css";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 import {
   Form,

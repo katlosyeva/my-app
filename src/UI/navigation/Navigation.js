@@ -1,19 +1,17 @@
 import classes from "./Navigation.module.css";
 import React from "react";
-import { NavLink, useLinkClickHandler } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-import AuthModal from "../UI/AuthModal";
-import RegistrationModal from "../UI/RegistrationModal";
-import ForgotPasswordModal from "../UI/ForgotPasswordModal";
-import AuthProvider from "../contexts/AuthContext";
-import { useAuth } from "../contexts/AuthContext";
-import ConfirmationModal from "../UI/ConfirmationModal";
-import LanguageSwitch from "../UI/LanguageSwitch";
+import AuthModal from "../modals/AuthModal";
+import RegistrationModal from "../modals/RegistrationModal";
+import ForgotPasswordModal from "../modals/ForgotPasswordModal";
+import LanguageSwitch from "../../UI/shared/LanguageSwitch";
 import { useTranslation } from "react-i18next";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import AuthProvider, { useAuth } from "../../contexts/AuthContext";
 
 const Navigation = (props) => {
   const { t, i18n } = useTranslation();
-
   const [show, setShow] = useState(false);
   const [showRegistration, setShowRegistration] = useState(false);
   const [showForgotModal, setForgotModalShowRegistration] = useState(false);
@@ -56,14 +54,14 @@ const Navigation = (props) => {
   return (
     <AuthProvider>
       <div className={classes.absoluteContainer}>
-        <div class="container">
-          <nav class="navbar navbar-expand-lg align-center">
-            <div class="container-fluid">
-              <div className={`${classes.fxBrand} `} href="#">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg align-center">
+            <div className="container-fluid">
+              <Link className={`${classes.fxBrand} `} to="/">
                 FotoXata
-              </div>
+              </Link>
               <button
-                class="navbar-toggler "
+                className="navbar-toggler "
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav"
@@ -71,14 +69,14 @@ const Navigation = (props) => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
               </button>
               <div
-                class="collapse navbar-collapse justify-content-end align-center"
+                className="collapse navbar-collapse justify-content-end align-center"
                 id="navbarNav"
               >
-                <ul class="navbar-nav">
-                  <li class="nav-item">
+                <ul className="navbar-nav">
+                  <li className="nav-item">
                     <NavLink
                       className={({ isActive }) =>
                         isActive
@@ -90,7 +88,7 @@ const Navigation = (props) => {
                       {t("nav_photoshoots")}
                     </NavLink>
                   </li>
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       className={({ isActive }) =>
                         isActive
@@ -102,31 +100,7 @@ const Navigation = (props) => {
                       {t("nav_photoservices")}
                     </NavLink>
                   </li>
-                  {/* <li class="nav-item">
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive
-                          ? `${classes.fxLink} ${classes.active} nav-main nav-link`
-                          : `${classes.fxLink} nav-main nav-link`
-                      }
-                      to="/other-services"
-                    >
-                      Інші послуги
-                    </NavLink>
-                  </li>
-                  <li class="nav-item">
-                    <NavLink
-                      className={({ isActive }) =>
-                        isActive
-                          ? `${classes.fxLink} ${classes.active} nav-main nav-link`
-                          : `${classes.fxLink} nav-main nav-link`
-                      }
-                      to="/products"
-                    >
-                      Товари
-                    </NavLink>
-                  </li> */}
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <NavLink
                       className={({ isActive }) =>
                         isActive
@@ -140,23 +114,23 @@ const Navigation = (props) => {
                   </li>
                   {!currentUser && (
                     <li
-                      class={`${classes.fxLink} nav-main nav-link`}
+                      className={`${classes.fxLink} nav-main nav-link`}
                       onClick={handleShow}
                     >
                       {t("nav_login")}
                     </li>
                   )}
                   {currentUser && (
-                    <li class="nav-item ">
-                      <div class="h-100 d-flex align-items-center px-1">
-                        <i class="bi bi-person-circle fs-3"></i>
+                    <li className="nav-item ">
+                      <div className="h-100 d-flex align-items-center px-1">
+                        <i className="bi bi-person-circle fs-3"></i>
                       </div>
                       {/* <p>{currentUser.email}</p> */}
                     </li>
                   )}
                   {currentUser && (
                     <li
-                      class={`${classes.fxLink} nav-main nav-link`}
+                      className={`${classes.fxLink} nav-main nav-link`}
                       onClick={openConfirmModal}
                     >
                       {t("nav_logout")}

@@ -30,7 +30,8 @@ const AboutUs = (props) => {
             </p>
             <img
               className={classes.centralImage}
-              src="/assets/karta_fotoxata.jpg"
+              src="/assets/images/about-us/karta_fotoxata.jpg"
+              alt="photoxata-phones"
             />
 
             <div></div>
@@ -78,15 +79,25 @@ const AboutUs = (props) => {
 
           <div className={classes.secondColumn}>
             <img
-              src="/assets/photoenvelope.jpg"
+              src="/assets/images/about-us/photoenvelope.jpg"
               className={classes.sideImage}
+              alt="photoxata"
             />
-            <img src="/assets/shop.jpg" className={classes.sideImage} />
             <img
-              src="/assets/photopassport.jpg"
+              src="/assets/images/about-us/shop.jpg"
               className={classes.sideImage}
+              alt="photoxata"
             />
-            <img src="/assets/girlyandy.jpg" className={classes.sideImage} />
+            <img
+              src="/assets/images/about-us/photopassport.jpg"
+              className={classes.sideImage}
+              alt="photoxata"
+            />
+            <img
+              src="/assets/images/about-us/girlyandy.jpg"
+              className={classes.sideImage}
+              alt="photoxata"
+            />
           </div>
         </div>
       </Container>

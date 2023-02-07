@@ -2,7 +2,7 @@ import GoogleMapReact from "google-map-react";
 import classes from "./Map.module.css";
 
 const Pin = () => {
-  return <img src="../assets/location-pin.png" />;
+  return <img src="../assets/icons/map/location-pin.png" alt="localization_pin"/>;
 };
 export default function Map(props) {
   const defaultProps = {
@@ -10,7 +10,7 @@ export default function Map(props) {
       lat: props.lat,
       lng: props.lng,
     },
-    zoom: 11,
+    zoom: 15,
   };
 
   return (

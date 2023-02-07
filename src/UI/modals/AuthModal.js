@@ -7,7 +7,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import classes from "./RegistrationModal.module.css";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 import { useState } from "react";
 const AuthModal = (props) => {
@@ -137,34 +137,6 @@ const AuthModal = (props) => {
         </a>
       </Container>
     </Modal>
-
-    // <div
-    //   className="modal show"
-    //   style={{ display: "block", position: "initial" }}
-    // >
-    //   <Modal.Dialog>
-    //     <Modal.Header closeButton>
-    //       <Modal.Title>Авторизація</Modal.Title>
-    //     </Modal.Header>
-
-    //     <Modal.Body>
-    //       <Form.Group className="mb-3" controlId="formBasicEmail">
-    //         <Form.Label className="">E-mail</Form.Label>
-    //         <Form.Control type="e-mail" />
-    //         <Form.Text className="text-muted"></Form.Text>
-    //       </Form.Group>
-    //       <Form.Group>
-    //         <Form.Label className="">Пароль</Form.Label>
-    //         {/* <Form.Dialog></Form.Dialog> */}
-    //       </Form.Group>
-    //     </Modal.Body>
-
-    //     <Modal.Footer>
-    //       <Button variant="secondary">Close</Button>
-    //       <Button variant="primary">Save changes</Button>
-    //     </Modal.Footer>
-    //   </Modal.Dialog>
-    // </div>
   );
 };
 

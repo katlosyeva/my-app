@@ -3,7 +3,7 @@ import classes from "./RegistrationModal.module.css";
 // import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
-const ForgotPasswordModal = (props) => {
+const ConfirmationModal = (props) => {
   //   const { forgotpassword } = useAuth();
   const [loading, setLoading] = useState(false);
   //   const [error, setError] = useState("");
@@ -17,7 +17,9 @@ const ForgotPasswordModal = (props) => {
     <Modal show={props.show} onHide={props.close}>
       {props.errorState && <Alert>{props.errorState}</Alert>}
 
-      <p class="text-center mt-5">Ви впевнені, що хочете виконати цю дію?</p>
+      <p className="text-center mt-5">
+        Ви впевнені, що хочете виконати цю дію?
+      </p>
       <Container className="d-flex justify-content-center mx-2 my-2">
         <Button
           disabled={loading}
@@ -33,4 +35,4 @@ const ForgotPasswordModal = (props) => {
   );
 };
 
-export default ForgotPasswordModal;
+export default ConfirmationModal;

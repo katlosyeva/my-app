@@ -1,0 +1,16 @@
+.border {
+  border-top: 1px solid #868e96;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  line-height: 1rem;
+}
+.heading {
+  height: 4rem;
+  color: #fcc419;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}

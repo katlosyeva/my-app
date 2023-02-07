@@ -1,0 +1,15 @@
+.carouselPhoto {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 94.3vh;
+}
+.carouselPhoto1 {
+  background-image: url("../../../public/assets/images/photoshoots-carousel/vusheneba.jpg");
+}
+.carouselPhoto2 {
+  background-image: url("../../../public/assets/images/photoshoots-carousel/newyear.jpg");
+}
+.carouselPhoto3 {
+  background-image: url("../../../public/assets/images/photoshoots-carousel/na-prurodi.jpg");
+}
