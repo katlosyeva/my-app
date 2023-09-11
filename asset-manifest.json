@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/github.io/my-app/static/css/main.f2496d46.css",
+    "main.js": "/github.io/my-app/static/js/main.4c39002a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/github.io/my-app/static/js/787.28cb0dcd.chunk.js",
+    "static/media/na-prurodi.jpg": "/github.io/my-app/static/media/na-prurodi.afc3a8bf616ae6724eb7.jpg",
+    "static/media/home.jpg": "/github.io/my-app/static/media/home.be7b5de9f969413c6dc4.jpg",
+    "static/media/vusheneba.jpg": "/github.io/my-app/static/media/vusheneba.c19503b239771b73b8dd.jpg",
+    "static/media/newyear.jpg": "/github.io/my-app/static/media/newyear.9a36639552555846cd21.jpg",
+    "static/media/bootstrap-icons.woff?": "/github.io/my-app/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
+    "static/media/bootstrap-icons.woff2?": "/github.io/my-app/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
+    "index.html": "/github.io/my-app/index.html",
+    "main.f2496d46.css.map": "/github.io/my-app/static/css/main.f2496d46.css.map",
+    "main.4c39002a.js.map": "/github.io/my-app/static/js/main.4c39002a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/github.io/my-app/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f2496d46.css",
+    "static/js/main.4c39002a.js"
+  ]
+}
